@@ -18,18 +18,23 @@ from django.contrib import admin
 from django.urls import path
 from django.conf.urls.static import static
 
-from posts import views
+from posts import views as posts_views
+from users import views as users_views
 from Blog_alma_2 import settings
 
 urlpatterns = [
     path('admin/', admin.site.urls),
 
-    path('', views.main_view),
-    path('posts/', views.posts_view),
-    path('hashtags/', views.hashtags_view),
-    path('posts/<int:id>/', views.post_detail_view),
+    path('', posts_views.main_view),
+    path('posts/', posts_views.posts_view),
+    path('hashtags/', posts_views.hashtags_view),
+    path('posts/<int:id>/', posts_views.post_detail_view),
 
-    path('posts/create/', views.posts_create_view)
+    path('posts/create/', posts_views.posts_create_view),
+
+    path('users/register/', users_views.register_view),
+    path('users/auth/', users_views.auth_view),
+    path('users/logout/', users_views.logout_view),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

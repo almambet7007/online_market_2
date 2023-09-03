@@ -1,6 +1,10 @@
 {% extends 'layouts/index.html' %}
 
 {% block content %}
+    <form action="/posts/" method="get">
+        <input type="text" name="search">
+        <input type="submit" value="Search">
+    </form>
    <div class="posts" style="display: flex; justify-content: space-between; width: 80%; margin-left: 10%; flex-wrap: wrap" >
         {% for post in posts %}
            <div class="card" style="width: 18rem;">
@@ -16,5 +20,12 @@
 </div>
         {% endfor %}
    </div>
+    <div class="pages">
+        {% for page in pages %}
+            <a href="/posts/?page={{ page }}">
+                <button>{{ page }}</button>
+            </a>
+        {% endfor %}
+    </div>
 {% endblock %}
 
